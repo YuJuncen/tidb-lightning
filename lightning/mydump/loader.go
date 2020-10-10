@@ -58,6 +58,7 @@ func (m *MDTableMeta) GetSchema(ctx context.Context, store storage.ExternalStora
 			zap.String("Path", m.SchemaFile.FileMeta.Path),
 			log.ShortError(err),
 		)
+		log.L().Debug("error verbose", zap.Error(err))
 		return ""
 	}
 	return string(schema)
