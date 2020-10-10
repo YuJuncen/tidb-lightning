@@ -81,7 +81,7 @@ func ExportStatement(ctx context.Context, store storage.ExternalStorage, sqlFile
 	buffer := make([]byte, 0, sqlFile.Size+1)
 	for {
 		line, err := br.ReadBytes('\n')
-		if errors.Cause(err) == io.EOF {
+		if errors.Cause(err) == io.EOF || errors.Cause(err) == io.ErrNoProgress {
 			if len(line) == 0 { // it will return EOF if there is no trailing new line.
 				break
 			}
